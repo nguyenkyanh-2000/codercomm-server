@@ -23,11 +23,11 @@ export const generateApiResponse = ({
   removeAccessToken,
 }) => {
   const response = {};
-  // Frontend runs on port 3000, API on port 4000
-  const frontendPort = 3000;
+  // Use FRONTEND_URL from env, fallback to localhost for dev
+  const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:3000";
 
   let headers = {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Allow-Credentials": "true",

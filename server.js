@@ -89,10 +89,12 @@ const controllers = [
   }),
 
   http.options("*", () => {
+    // Use FRONTEND_URL from env, fallback to localhost for dev
+    const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:3000";
     return new Response(null, {
       status: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": allowedOrigin,
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
         "Access-Control-Allow-Credentials": "true",
