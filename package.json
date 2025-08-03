@@ -1,0 +1,26 @@
+{
+  "name": "codercomm-server",
+  "version": "1.0.0",
+  "description": "CoderComm API Server",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@mswjs/http-middleware": "^0.10.3",
+    "express": "^4.18.0",
+    "cors": "^2.8.5",
+    "jose": "^6.0.11",
+    "uuid": "^11.1.0"
+  },
+  "keywords": [
+    "api",
+    "mock",
+    "express",
+    "codercomm"
+  ],
+  "author": "",
+  "license": "MIT"
+}
