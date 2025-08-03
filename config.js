@@ -6,7 +6,7 @@ if (!globalThis.crypto) {
 }
 
 export const MOCK_ACCESS_TOKEN_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "mockaccesstoken"
+  process.env.MOCK_ACCESS_TOKEN_SECRET || "mockaccesstoken"
 );
 export const MOCK_ACCESS_TOKEN_EXPIRATION = parseInt(
   process.env.JWT_EXPIRATION || "86400"

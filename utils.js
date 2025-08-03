@@ -45,16 +45,30 @@ export const generateApiResponse = ({
   if (errors) response.errors = errors;
   if (message) response.message = message;
   if (accessToken) {
+    // Use Secure flag for HTTPS environments (production), but not for localhost
+    const isProduction =
+      process.env.NODE_ENV === "production" ||
+      allowedOrigin.startsWith("https:");
+    const secureFlag = isProduction ? "; Secure" : "";
+    const sameSite = isProduction ? "None" : "Lax"; // None required for cross-site HTTPS
+
     headers = {
       ...headers,
-      "Set-Cookie": `codercomm-access-token=${accessToken}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${MOCK_ACCESS_TOKEN_EXPIRATION}`,
+      "Set-Cookie": `codercomm-access-token=${accessToken}; Path=/; HttpOnly; SameSite=${sameSite}${secureFlag}; Max-Age=${MOCK_ACCESS_TOKEN_EXPIRATION}`,
     };
   }
 
   if (removeAccessToken) {
+    // Use same logic for removing cookies
+    const isProduction =
+      process.env.NODE_ENV === "production" ||
+      allowedOrigin.startsWith("https:");
+    const secureFlag = isProduction ? "; Secure" : "";
+    const sameSite = isProduction ? "None" : "Lax";
+
     headers = {
       ...headers,
-      "Set-Cookie": `codercomm-access-token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0`,
+      "Set-Cookie": `codercomm-access-token=; Path=/; HttpOnly; SameSite=${sameSite}${secureFlag}; Max-Age=0`,
     };
   }
 
