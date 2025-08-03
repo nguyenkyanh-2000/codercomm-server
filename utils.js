@@ -27,7 +27,7 @@ export const generateApiResponse = ({
   const frontendPort = 3000;
 
   let headers = {
-    "Access-Control-Allow-Origin": `http://localhost:${frontendPort}`,
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Allow-Credentials": "true",
