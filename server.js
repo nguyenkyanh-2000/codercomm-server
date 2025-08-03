@@ -1,4 +1,11 @@
 // server.js
+import { webcrypto } from "node:crypto";
+
+// Polyfill crypto for Railway and other environments that don't have it globally
+if (!globalThis.crypto) {
+  globalThis.crypto = webcrypto;
+}
+
 import { delay, http } from "msw";
 import { SignJWT } from "jose";
 import {
